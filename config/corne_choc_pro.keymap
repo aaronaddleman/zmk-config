@@ -23,6 +23,15 @@
         };
     };
 
+    behaviors {
+        a_esc: a_esc {
+            compatible = "zmk,behavior-tap-dance";
+            label = "A_ESC";
+            #binding-cells = <0>;
+            bindings = <&kp A>, <&kp ESCAPE>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
@@ -82,10 +91,10 @@
         extra_layer_1 {
             display-name = "EXTRA 1";
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans                  &trans  &trans  &trans  &trans  &trans  &trans
-                        &trans  &trans  &trans                  &trans  &trans  &trans
+&trans  &kp TAB     &trans  &trans  &trans  &trans  &trans  &trans  &trans    &trans    &trans  &trans     &trans  &trans
+&trans  &kp ESCAPE  &trans  &trans  &trans  &trans  &trans  &trans  &kp LEFT  &kp DOWN  &kp UP  &kp RIGHT  &trans  &trans
+&trans  &trans      &trans  &trans  &trans  &trans                  &trans    &trans    &trans  &trans     &trans  &trans
+                            &trans  &trans  &trans                  &trans    &trans    &trans
             >;
         };
 
@@ -137,6 +146,15 @@
 &trans  &trans  &trans  &trans  &trans  &trans                  &trans  &trans  &trans  &trans  &trans  &trans
                         &trans  &trans  &trans                  &trans  &trans  &trans
             >;
+        };
+    };
+
+    conditional_layers {
+        compatible = "zmk,conditional-layers";
+
+        cmd {
+            if-layers = <1 0>;
+            then-layer = <3>;
         };
     };
 };
